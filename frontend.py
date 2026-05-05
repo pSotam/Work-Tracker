@@ -2,7 +2,10 @@ import tkinter as tk
 
 janela = tk.Tk()
 janela.title("Work Tracker")
+
 janela.geometry("500x550")
+janela.resizable(False, False)
+
 janela.configure(bg="#1D1C35")
 
 # TEXTOS
