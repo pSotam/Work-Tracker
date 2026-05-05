@@ -82,10 +82,24 @@ codigo_mlb.pack(side="left")
 dados = []
 
 def botao_final():
-    tarefa = nome_tarefa.get()
-    descricao = texto_personalizado.get("1.0", "end-1c")
-    sku = codigo_sku.get()
-    mlb = codigo_mlb.get()
+    tarefa = nome_tarefa.get().strip()
+    if(tarefa == ''):
+        mensagem.config(text="Nome da tarefa é obrigatório!")
+        return
+    else:
+        mensagem.config(text="")
+
+    descricao = texto_personalizado.get("1.0", "end-1c").strip()
+    if descricao == "":
+        descricao = "N/A"
+
+    sku = codigo_sku.get().strip()
+    if sku == "":
+        sku = "N/A"
+
+    mlb = codigo_mlb.get().strip()
+    if mlb == "":
+        mlb = "N/A"
 
     print(tarefa)
     print(descricao)
@@ -104,6 +118,8 @@ def botao_final():
     texto_personalizado.delete("1.0", tk.END)
     codigo_sku.delete(0, tk.END)
     codigo_mlb.delete(0, tk.END)
+
+    mensagem.config(text="Tarefa salva com sucesso!", fg="green")
 
     # BOTÃO DE ENVIAR
 botao = tk.Button(janela, 
@@ -126,5 +142,12 @@ botao = tk.Button(janela,
                   font=('Arial',12,"bold"),
                   width=12)
 botao.pack(pady=10)
+
+mensagem = tk.Label(janela,
+                    text="",
+                    font=("Arial",10,"bold"),
+                    bg="#1D1C35",
+                    fg="#ff4d4d")
+mensagem.pack()
 
 janela.mainloop()
